@@ -1,11 +1,17 @@
 package com.java.insurance;
 
 import com.java.insurance.domain.*;
+import com.java.insurance.domain.vehicle.stateNumber.AnswerStateNumber;
+import com.java.insurance.domain.vehicle.AnswerVehicleIdentificationNumber;
 import com.java.insurance.mail.MailSender;
 import com.java.insurance.validators.*;
 
+import java.util.LinkedList;
+import java.util.List;
 
-public class InsuranceOrderValidator {
+
+public class InsuranceOrderValidator  {
+
     private StateNumberValidator stateNumberVal;
     private EmailValidator emailVal;
     private IndividualTaxpayerNumberValidator individualTaxpayerNumberVal;
@@ -30,26 +36,24 @@ public class InsuranceOrderValidator {
     }
 
     public void checkAll() {
-        InsuranceOrder[] insuranceOrders = readInsuranceOrders();
+        List<InsuranceOrder> ioList =readInsuranceOrders();
 
-        for (InsuranceOrder ion : insuranceOrders) {
+        for (InsuranceOrder ion : ioList) {
             checkOneOrder(ion);
         }
 
     }
 
-    public InsuranceOrder[] readInsuranceOrders(){
-        InsuranceOrder [] inoArray = new InsuranceOrder[3];
-        for (int i = 0; i <inoArray.length ; i++) {
-            inoArray[i] = SaveInsuranceOrder.buildInsuranceOrder(i);
-
+    public List<InsuranceOrder> readInsuranceOrders(){
+        List<InsuranceOrder> ioList = new LinkedList<>();
+        for (int i = 0; i <5 ; i++) {
+            ioList.add(SaveInsuranceOrder.buildInsuranceOrder(i));
         }
-
-        return inoArray;
+        return ioList;
     }
 
     public void checkOneOrder(InsuranceOrder insuranceOrders){
-            AnswerStateNumber stateAnswer = checkStateNumber(insuranceOrders);
+        AnswerStateNumber stateAnswer = checkStateNumber(insuranceOrders);
 
 
 //            AnswerVehicleIdentificationNumber identificationNumberAnswer =
@@ -64,8 +68,8 @@ public class InsuranceOrderValidator {
     }
 
 
-     public AnswerStateNumber checkStateNumber(InsuranceOrder insuranceOrder){  // перевірка гос номеру
-      return stateNumberVal.checkStateNumber(insuranceOrder);
+    public AnswerStateNumber checkStateNumber(InsuranceOrder insuranceOrder){  // перевірка гос номеру
+        return stateNumberVal.checkStateNumber(insuranceOrder);
     }
 
     public AnswerVehicleIdentificationNumber checkVehicleIdentificationNumber(InsuranceOrder insuranceOrder) { //перевірка номеру кузова

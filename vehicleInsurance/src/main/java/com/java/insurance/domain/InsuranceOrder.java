@@ -1,6 +1,8 @@
 package com.java.insurance.domain;
 
 
+import com.java.insurance.domain.vehicle.Vehicle;
+
 import java.time.LocalDate;
 
 public class InsuranceOrder {

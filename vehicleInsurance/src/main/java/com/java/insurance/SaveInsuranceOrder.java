@@ -3,7 +3,7 @@ package com.java.insurance;
 import com.java.insurance.domain.Address;
 import com.java.insurance.domain.Customer;
 import com.java.insurance.domain.InsuranceOrder;
-import com.java.insurance.domain.Vehicle;
+import com.java.insurance.domain.vehicle.Vehicle;
 
 
 import java.time.LocalDate;
@@ -31,11 +31,12 @@ public class SaveInsuranceOrder {
         ino.setEndDate(LocalDate.of(2021,8,21));
         Address address = new Address("195000", "Заневский пр.", "12", "", "142");
         Vehicle vehicle = new Vehicle(2012,"mercedes","W213",
-                "JMZGG12F761624527","AA1111AA");
-        Customer customer = new Customer("Oleh","Artymiak","Bohdanovich",
-                "+380837341719","oleh.artymiak@gmail.com","6670087167",vehicle,address);
+                "JMZGG12F761624527","AA1111");
+        Customer customer = new Customer("Oleh","Artymiak","Bohdanovich","+380837341719",
+                                   "oleh.artymiak@gmail.com","6670087167",vehicle,address);
 
         ino.setCustomer(customer);
+
         ino.setVehicle(vehicle);
         return ino;
     }

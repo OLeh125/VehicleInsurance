@@ -1,5 +1,7 @@
 package com.java.insurance.domain;
 
+import com.java.insurance.domain.vehicle.Vehicle;
+
 public class Customer {
     private String name;
     private String lastName;

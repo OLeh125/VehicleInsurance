@@ -1,7 +1,7 @@
 package com.java.insurance.validators;
 
 import com.java.insurance.domain.InsuranceOrder;
-import com.java.insurance.domain.AnswerVehicleIdentificationNumber;
+import com.java.insurance.domain.vehicle.AnswerVehicleIdentificationNumber;
 
 public class VehicleIdentificationNumberValidator {
     public  AnswerVehicleIdentificationNumber checkVehicleIdentificationNumber(InsuranceOrder insuranceOrder) { //перевірка номеру кузова

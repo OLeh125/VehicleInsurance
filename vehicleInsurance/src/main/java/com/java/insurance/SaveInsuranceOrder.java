@@ -6,14 +6,21 @@ import com.java.insurance.domain.InsuranceOrder;
 import com.java.insurance.domain.vehicle.Vehicle;
 
 
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.Random;
 
 public class SaveInsuranceOrder {
-    public static void main(String[] args) {
-        InsuranceOrder s = buildInsuranceOrder(10);
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Class.forName("org.postgresql.Driver");
+        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/insurance", "postgres", "postgres");
 
-
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM o_street");
+        while (rs.next()){
+            System.out.println(rs.getLong(1)+":" + rs.getString(2));
+        }
+//        InsuranceOrder s = buildInsuranceOrder(10);
 //        InsuranceOrder insuranceOrder = new InsuranceOrder();
 //        long id  = saveInsuranceOrder(insuranceOrder);
 //        System.out.println(id);

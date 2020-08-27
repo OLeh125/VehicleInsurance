@@ -38,7 +38,3 @@ CREATE TABLE o_insurance_order(
                                   FOREIGN KEY (costumer_street_code) REFERENCES o_street(street_code) ON DELETE RESTRICT
 );
 
-
-INSERT INTO o_street(street_code, street_name) VALUES (1,'Street First'),(2,'Street Second'),(3,'Street Third');
-SELECT * FROM o_street;
-UPDATE o_street SET street_name = 'First Street' WHERE street_code = 1;

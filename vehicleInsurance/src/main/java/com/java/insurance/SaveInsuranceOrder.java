@@ -1,24 +1,46 @@
 package com.java.insurance;
 
-import com.java.insurance.domain.Address;
-import com.java.insurance.domain.Customer;
-import com.java.insurance.domain.InsuranceOrder;
+import com.java.insurance.dao.DictionaryDaoImpl;
+import com.java.insurance.domain.*;
 import com.java.insurance.domain.vehicle.Vehicle;
 
-
-import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 public class SaveInsuranceOrder {
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Class.forName("org.postgresql.Driver");
-        Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/insurance", "postgres", "postgres");
+    public static void main(String[] args) throws Exception {
+//        List<Street> d = new DictionaryDaoImpl().findStreets("");
+//
+//        for (Street s: d) {
+//            System.out.println(s.getStreetName());
+//        }
 
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM o_street");
-        while (rs.next()){
-            System.out.println(rs.getLong(1)+":" + rs.getString(2));
+        List<CountryArea> countryArea1 = new DictionaryDaoImpl().findAreas("");
+
+        for (CountryArea c : countryArea1) {
+            System.out.println(c.getAreaId() + " : " + c.getAreaName());
+        }
+
+        System.out.println();
+        List<CountryArea> countryArea2 = new DictionaryDaoImpl().findAreas("020000000000");
+
+        for (CountryArea c : countryArea2) {
+            System.out.println(c.getAreaId() + " : " + c.getAreaName());
+        }
+
+        System.out.println();
+        List<CountryArea> countryArea3 = new DictionaryDaoImpl().findAreas("020010000000");
+
+        for (CountryArea c : countryArea3) {
+            System.out.println(c.getAreaId() + " : " + c.getAreaName());
+        }
+
+        System.out.println();
+        List<CountryArea> countryArea4 = new DictionaryDaoImpl().findAreas("020010010000");
+
+        for (CountryArea c : countryArea4) {
+            System.out.println(c.getAreaId() + " : " + c.getAreaName());
         }
 //        InsuranceOrder s = buildInsuranceOrder(10);
 //        InsuranceOrder insuranceOrder = new InsuranceOrder();
@@ -36,7 +58,8 @@ public class SaveInsuranceOrder {
         ino.setOrderId(id);
         ino.setDataOfIssue(LocalDate.of(2020,8,21));
         ino.setEndDate(LocalDate.of(2021,8,21));
-        Address address = new Address("195000", "Заневский пр.", "12", "", "142");
+        Street street = new Street(1L,"First Street");
+        Address address = new Address("195000","Заневский пр.",street, "12", "", "142");
         Vehicle vehicle = new Vehicle(2012,"mercedes","W213",
                 "JMZGG12F761624527","AA1111");
         Customer customer = new Customer("Oleh","Artymiak","Bohdanovich","+380837341719",

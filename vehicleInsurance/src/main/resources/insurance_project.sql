@@ -38,4 +38,3 @@ CREATE TABLE o_insurance_order(
                                   FOREIGN KEY (costumer_street_code) REFERENCES o_street(street_code) ON DELETE RESTRICT
 );
 
-

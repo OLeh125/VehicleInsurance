@@ -3,6 +3,7 @@ package com.java.insurance.domain;
 public class Address {
     private String city;
     private String postCode;
+    private Street street;
     private String building;
     private String extension;
     private String apartment;
@@ -10,9 +11,10 @@ public class Address {
     public Address() {
     }
 
-    public Address(String city, String postCode, String building, String extension, String apartment) {
+    public Address(String city, String postCode, Street street, String building, String extension, String apartment) {
         this.city = city;
         this.postCode = postCode;
+        this.street = street;
         this.building = building;
         this.extension = extension;
         this.apartment = apartment;
@@ -32,6 +34,14 @@ public class Address {
 
     public void setPostCode(String postCode) {
         this.postCode = postCode;
+    }
+
+    public Street getStreet() {
+        return street;
+    }
+
+    public void setStreet(Street street) {
+        this.street = street;
     }
 
     public String getBuilding() {

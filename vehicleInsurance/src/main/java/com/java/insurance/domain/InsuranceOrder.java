@@ -4,10 +4,12 @@ package com.java.insurance.domain;
 import com.java.insurance.domain.vehicle.Vehicle;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class InsuranceOrder {
     private long orderId;
-    private LocalDate dataOfIssue;
+    private LocalDateTime dataOfIssue;
+    private InsuranceOrderStatus insuranceOrderStatus;
     private LocalDate endDate;
     private Customer customer;
     private Vehicle vehicle;
@@ -21,12 +23,20 @@ public class InsuranceOrder {
         this.orderId = orderId;
     }
 
-    public LocalDate getDataOfIssue() {
+    public LocalDateTime getDataOfIssue() {
         return dataOfIssue;
     }
 
-    public void setDataOfIssue(LocalDate dataOfIssue) {
+    public void setDataOfIssue(LocalDateTime dataOfIssue) {
         this.dataOfIssue = dataOfIssue;
+    }
+
+    public InsuranceOrderStatus getInsuranceOrderStatus() {
+        return insuranceOrderStatus;
+    }
+
+    public void setInsuranceOrderStatus(InsuranceOrderStatus insuranceOrderStatus) {
+        this.insuranceOrderStatus = insuranceOrderStatus;
     }
 
     public LocalDate getEndDate() {

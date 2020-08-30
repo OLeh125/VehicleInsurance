@@ -1,5 +1,8 @@
 package com.java.insurance.domain.vehicle;
 
+
+import java.time.LocalDate;
+
 public class Vehicle {
     private int yearOfProduction;
     private String vehicleBrand;

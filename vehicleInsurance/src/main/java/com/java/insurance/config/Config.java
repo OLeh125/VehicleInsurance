@@ -17,7 +17,7 @@ public class Config {
                 properties.load(inputStream);
             } catch (IOException e) {
                 e.printStackTrace();
-                throw  new RuntimeException(e);
+                throw new RuntimeException(e);
             }
         }
         return properties.getProperty(name);

@@ -14,20 +14,8 @@ public class DictionaryDaoImpl implements DictionaryDao{
     public static final String GET_STREET = "SELECT street_code,street_name FROM o_street WHERE UPPER(street_name) LIKE UPPER(?);";
     private static final String GET_AREA = "SELECT * FROM  o_country_struct  WHERE area_id like ? and area_id <> ?" ;
 
-    private Connection getConnection(){
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(Config.getProperty(Config.DB_URL),
-                    Config.getProperty(Config.DB_LOGIN),Config.getProperty(Config.DB_PASSWORD));
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return con;
+    private Connection getConnection() throws SQLException{
+        return ConnectionBuilder.getConnection();
     }
 
     @Override
@@ -43,7 +31,7 @@ public class DictionaryDaoImpl implements DictionaryDao{
             }
 
         }catch (SQLException ex){
-             throw new DaoException(ex);
+            throw new DaoException(ex);
         }
         return  result;
     }

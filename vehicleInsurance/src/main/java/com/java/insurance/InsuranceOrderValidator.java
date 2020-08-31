@@ -1,8 +1,10 @@
 package com.java.insurance;
 
+import com.java.insurance.dao.InsuranceOrderDaoImpl;
 import com.java.insurance.domain.*;
 import com.java.insurance.domain.vehicle.stateNumber.AnswerStateNumber;
 import com.java.insurance.domain.vehicle.AnswerVehicleIdentificationNumber;
+import com.java.insurance.exception.DaoException;
 import com.java.insurance.mail.MailSender;
 import com.java.insurance.validators.*;
 
@@ -36,7 +38,12 @@ public class InsuranceOrderValidator  {
     }
 
     public void checkAll() {
-        List<InsuranceOrder> ioList =readInsuranceOrders();
+        List<InsuranceOrder> ioList = null;
+        try {
+            ioList = readInsuranceOrders();
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
 
         for (InsuranceOrder ion : ioList) {
             checkOneOrder(ion);
@@ -44,12 +51,8 @@ public class InsuranceOrderValidator  {
 
     }
 
-    public List<InsuranceOrder> readInsuranceOrders(){
-        List<InsuranceOrder> ioList = new LinkedList<>();
-        for (int i = 0; i <5 ; i++) {
-            ioList.add(SaveInsuranceOrder.buildInsuranceOrder(i));
-        }
-        return ioList;
+    public List<InsuranceOrder> readInsuranceOrders() throws DaoException {
+      return new InsuranceOrderDaoImpl().getInsuranceOrders();
     }
 
     public void checkOneOrder(InsuranceOrder insuranceOrders){

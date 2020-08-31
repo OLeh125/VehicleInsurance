@@ -6,6 +6,7 @@ INSERT INTO o_street (street_code, street_name) VALUES
 (5, 'проспект Свободи');
 
 
+
 INSERT INTO o_country_struct (area_id, area_name) VALUES
 ('010000000000', 'Місто'),
 ('010010000000', 'Місто Район 1'),

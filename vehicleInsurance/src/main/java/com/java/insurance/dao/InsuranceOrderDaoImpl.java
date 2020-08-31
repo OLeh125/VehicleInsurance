@@ -1,6 +1,5 @@
 package com.java.insurance.dao;
 
-import com.java.insurance.config.Config;
 import com.java.insurance.domain.*;
 import com.java.insurance.domain.vehicle.Vehicle;
 import com.java.insurance.exception.DaoException;
@@ -24,24 +23,10 @@ public class InsuranceOrderDaoImpl implements InsuranceOrderDao{
             " ?, ?, ?, ?, " +
             "  ?, ?, ?, ?);";
 
-    private static final String SELECT_ORDERS = "SELECT * FROM o_insurance_order" +
-            " WHERE insurance_order_status = 0 ORDER BY insurance_order_date ";
+    private static final String SELECT_ORDERS = "SELECT * FROM o_insurance_order";
 
-    //TODO refactoring - make one method
-    private Connection getConnection(){
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(Config.getProperty(Config.DB_URL),
-                    Config.getProperty(Config.DB_LOGIN),Config.getProperty(Config.DB_PASSWORD));
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return con;
+    private Connection getConnection() throws SQLException{
+        return ConnectionBuilder.getConnection();
     }
 
     @Override
